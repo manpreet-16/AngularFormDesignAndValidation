@@ -13,7 +13,8 @@ export class UserFormComponent implements OnInit {
   password : string ="";
   confirmpassword:string="";
   isDetailShow:boolean=false;
-
+  IsBothPasswordMatched:boolean=false;
+  notmatchpassmsg:string="";
   constructor(private fb : FormBuilder) {
     this.signupForm();
    }
@@ -35,9 +36,18 @@ export class UserFormComponent implements OnInit {
     this.email = this.singup.controls['name'].value;
     this.password = this.singup.controls['password'].value
     this.confirmpassword = this.singup.controls['confirmpassword'].value
-    }
+   if(this.password == this.confirmpassword){
+     this.IsBothPasswordMatched = true;
+   }  
+  
+  }
 
     showDetails(){
-      this.isDetailShow=true;
-    }
+      if(this.IsBothPasswordMatched){
+        this.isDetailShow=true;
+        this.notmatchpassmsg=""}
+      else{
+      this.isDetailShow=false;
+      this.notmatchpassmsg="Password are not matched.. cannot show the data to u";
+    }}
 }
