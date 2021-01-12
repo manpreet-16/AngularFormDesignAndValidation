@@ -6,21 +6,43 @@
     <div class="form-group row">
       <label class="control-label col-sm-2">Email address</label>
       <input type="email" class="form-control" formControlName="name" placeholder="Enter email">
-   </div>
+      <div *ngIf="singup.get('name').touched || singup.get('name').dirty">
+            <div *ngIf="singup.get('name').hasError('email')" class="text-danger">
+                   Enter Valid email
+            </div>
+            <div *ngIf="singup.get('name').hasError('required')" class="text-danger">
+                Email is required
+         </div>
+          </div>
+    </div>
 
     <div class="form-group row">
       <label class="control-label col-sm-2">Password</label>
       <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <div *ngIf="singup.get('password').touched">
+        <div *ngIf="singup.get('password').hasError('required')" class="text-danger">
+            Password is required
+     </div>
+      </div>
     </div>
     
 
     <div class="form-group row">
       <label class="control-label col-sm-2">Confirm Password</label>
       <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Confirm Password">
+      <div *ngIf="singup.get('confirmpassword').touched">
+        <div *ngIf="singup.get('confirmpassword').hasError('required')" class="text-danger">
+            Password is required
+     </div>
+      </div>
+
+      
+
+
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button [disabled]="singup.invalid" type="submit" class="btn btn-primary">Submit</button>
  
 </form>
 </div>
