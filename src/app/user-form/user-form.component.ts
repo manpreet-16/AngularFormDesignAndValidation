@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -9,10 +9,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class UserFormComponent implements OnInit {
 
   singup! : FormGroup;
+
   email : string = "";
   password : string ="";
   confirmpassword:string="";
   isDetailShow:boolean=false;
+  IsBothPasswordMatched:boolean=false;
+  notmatchpassmsg:string="";
+  passwordMsgToUser:string="";
+  IsSubmitSucess:boolean=false;
+  
 
   constructor(private fb : FormBuilder) {
     this.signupForm();
@@ -23,9 +29,11 @@ export class UserFormComponent implements OnInit {
 
   signupForm(){
     this.singup = this.fb.group({
-     name: [''],
-     password :[''],
-     confirmpassword:['']
+     name: ['',[
+        Validators.required,
+        Validators.email]],
+     password :['',Validators.required],
+     confirmpassword:['',Validators.required]
     });
   }
 
@@ -33,9 +41,25 @@ export class UserFormComponent implements OnInit {
     this.email = this.singup.controls['name'].value;
     this.password = this.singup.controls['password'].value
     this.confirmpassword = this.singup.controls['confirmpassword'].value
-    }
+   if(this.password == this.confirmpassword){
+     this.IsBothPasswordMatched = true;
+     this.passwordMsgToUser = "";
+     this.IsSubmitSucess = true;
+   }  else{
+    this.IsBothPasswordMatched = false;
+     this.singup.invalid;
+     this.passwordMsgToUser="recheck both the passwords"
+     this.IsSubmitSucess = false;
+   }
+  
+  }
 
     showDetails(){
-      this.isDetailShow=true;
-    }
+      if(this.IsBothPasswordMatched){
+        this.isDetailShow=true;
+        this.notmatchpassmsg=""}
+      else{
+      this.isDetailShow=false;
+      this.notmatchpassmsg="Password are not matched.. cannot show the data to u";
+    }}
 }
