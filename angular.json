@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "AngularFormDesignAndValidation"
+  "defaultProject": "AngularFormDesignAndValidation",
+  "cli": {
+    "analytics": "56b40f61-2fc9-49be-b4eb-833ed746a5b0"
+  }
 }
