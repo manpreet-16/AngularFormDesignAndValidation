@@ -1,3 +1,5 @@
+<div *ngIf="IsSubmitSucess" class="alert alert-success"> Successfully Submit</div>
+
 <div class="container">
     <h2 style="text-align: center;color: blue;">!!SIGN UP!!</h2><br>
 
@@ -36,7 +38,7 @@
      </div>
       </div>
     </div>
-
+  <div class="text-danger">{{ passwordMsgToUser }}</div>
 
     <button [disabled]="singup.invalid" type="submit" class="btn btn-primary">Submit</button>
  

@@ -9,12 +9,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class UserFormComponent implements OnInit {
 
   singup! : FormGroup;
+
   email : string = "";
   password : string ="";
   confirmpassword:string="";
   isDetailShow:boolean=false;
   IsBothPasswordMatched:boolean=false;
   notmatchpassmsg:string="";
+  passwordMsgToUser:string="";
+  IsSubmitSucess:boolean=false;
+  
+
   constructor(private fb : FormBuilder) {
     this.signupForm();
    }
@@ -38,7 +43,14 @@ export class UserFormComponent implements OnInit {
     this.confirmpassword = this.singup.controls['confirmpassword'].value
    if(this.password == this.confirmpassword){
      this.IsBothPasswordMatched = true;
-   }  
+     this.passwordMsgToUser = "";
+     this.IsSubmitSucess = true;
+   }  else{
+    this.IsBothPasswordMatched = false;
+     this.singup.invalid;
+     this.passwordMsgToUser="recheck both the passwords"
+     this.IsSubmitSucess = false;
+   }
   
   }
 
