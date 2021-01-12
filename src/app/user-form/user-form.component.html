@@ -24,3 +24,10 @@
  
 </form>
 </div>
+<br>
+<button style="margin-left: 570px;" (click)="showDetails()" type="button" class="btn btn-primary">Fetch The details</button>
+<div *ngIf="isDetailShow">
+    <h4 style="color: blueviolet;font-size: 45px;text-align: center;">email : {{ email }}</h4>
+    <h4 style="color: blueviolet;font-size: 45px;text-align: center;">password : {{ password }}</h4>
+    <h4 style="color: blueviolet;font-size: 45px;text-align: center;">confirmpassword : {{ confirmpassword }}</h4>
+</div>

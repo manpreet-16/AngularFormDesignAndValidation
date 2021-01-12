@@ -9,6 +9,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class UserFormComponent implements OnInit {
 
   singup! : FormGroup;
+  email : string = "";
+  password : string ="";
+  confirmpassword:string="";
+  isDetailShow:boolean=false;
 
   constructor(private fb : FormBuilder) {
     this.signupForm();
@@ -21,7 +25,17 @@ export class UserFormComponent implements OnInit {
     this.singup = this.fb.group({
      name: [''],
      password :[''],
-     comfirmpassword:['']
+     confirmpassword:['']
     });
   }
+
+  SubmitSignUpForm(){
+    this.email = this.singup.controls['name'].value;
+    this.password = this.singup.controls['password'].value
+    this.confirmpassword = this.singup.controls['confirmpassword'].value
+    }
+
+    showDetails(){
+      this.isDetailShow=true;
+    }
 }
